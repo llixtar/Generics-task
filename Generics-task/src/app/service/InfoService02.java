@@ -3,6 +3,7 @@ package app.service;
 import app.entity.Client;
 import app.utils.Rounder;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InfoService02 {
@@ -20,7 +21,13 @@ public class InfoService02 {
         System.out.print("Enter client's phone: ");
         name = scanner.nextLine();
         System.out.print("Enter client's purchase amount: ");
-        amount = scanner.nextDouble();
+
+        try {
+            amount = scanner.nextDouble();
+        }catch (InputMismatchException e){
+            amount = 0;
+        }
+
         return new Client<>(name, amount);
     }
     //------------------------------------------------------------------------------------------------------------------
